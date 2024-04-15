@@ -32,6 +32,11 @@ class Main {
       $papersData[] = $paper;
   }
 
+    $outputFile = SpreadsheetGenerator::generate($papersData);
+
+    echo "Os dados foram salvos em: $outputFile";
+    
+
 
   }
 
