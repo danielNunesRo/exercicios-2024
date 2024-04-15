@@ -11,13 +11,12 @@ class Main {
    * Main runner, instantiates a Scrapper and runs.
    */
   public static function run(): void {
-    $dom = new \DOMDocument('1.0', 'utf-8');
-    $dom->loadHTMLFile(__DIR__ . '/../../assets/origin.html');
+    $htmlContent = file_get_contents(__DIR__ . '/../../assets/origin.html');
+    
+    $cleanedHTML = HTMLCleaner::cleanHTML($htmlContent);
 
-    $data = (new Scrapper())->scrap($dom);
 
-    // Write your logic to save the output file bellow.
-    print_r($data);
+    $records = explode('<a href="https://proceedings.science/proceedings/100227/_papers/', $cleanedHTML);
   }
 
 }
