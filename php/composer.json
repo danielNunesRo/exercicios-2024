@@ -15,10 +15,10 @@
     },
     "require": {
         "openspout/openspout": "^4.23.0",
-        "psalm/phar": "^8.2",
+        "psalm/phar": "5.23.1",
         "drupal/coder": "8.3.x-dev",
-        "phpoffice/phpspreadsheet": "dev-master",
-        "drupal/coder": "^8.2"
+        "phpoffice/phpspreadsheet": "dev-master"
+        
     },
     "config": {
         "allow-plugins": {

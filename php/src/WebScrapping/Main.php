@@ -2,6 +2,12 @@
 
 namespace Chuva\Php\WebScrapping;
 
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use Chuva\Php\WebScrapping\HTMLCleaner;
+use Chuva\Php\WebScrapping\PaperExtractor;
+use Chuva\Php\WebScrapping\SpreadsheetGenerator;
+
 /**
  * Runner for the Webscrapping exercice.
  */
@@ -41,3 +47,5 @@ class Main {
   }
 
 }
+
+Main::run();
