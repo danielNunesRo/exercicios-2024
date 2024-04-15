@@ -1,6 +1,9 @@
 <?php
 
-namespace Chuva\Tests\Unit\WebScrapping\WebScrapping\Entity;
+
+namespace Chuva\Tests\Unit\WebScrapping\Entity;
+
+require_once __DIR__ . '/../../../../vendor/autoload.php';
 
 use Chuva\Php\WebScrapping\Entity\Paper;
 use Chuva\Php\WebScrapping\Entity\Person;
