@@ -17,6 +17,22 @@ class Main {
 
 
     $records = explode('<a href="https://proceedings.science/proceedings/100227/_papers/', $cleanedHTML);
+
+    $papersData = [];
+    foreach ($records as $record) {
+      
+      if (empty(trim($record))) {
+          continue;
+      }
+  
+      
+      $paper = PaperExtractor::extract($record);
+  
+      
+      $papersData[] = $paper;
+  }
+
+
   }
 
 }
