@@ -9,54 +9,55 @@ jobs:
   Psalm:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: shivammathur/setup-php@v2  
-      with:
-        php-version: "8.3"
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2  
+        with:
+          php-version: "8.3"
 
-    - name: Installs composer
-      run: |
-        cd php;
-        composer require -n --prefer-dist
+      - name: Installs composer
+        run: |
+          cd php;
+          composer require -n --prefer-dist
 
-    - name: Run Psalm
-      run: |
-        cd php;
-        vendor/bin/psalm.phar --threads=2 --no-cache
+      - name: Run Psalm
+        run: |
+          cd php;
+          vendor/bin/psalm.phar --threads=2 --no-cache
 
   PHPlint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: shivammathur/setup-php@v2  
-      with:
-        php-version: "8.3"
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2  
+        with:
+          php-version: "8.3"
 
-    - name: Installs composer
-      run: |
-        cd php;
-        composer require -n --prefer-dist
+      - name: Installs composer
+        run: |
+          cd php;
+          composer require -n --prefer-dist
 
-    - name: Configure PHPCS and Run PHPCS with PSR-2
-      run: |
-        cd php;
-        ./vendor/bin/phpcs --config-set installed_paths "$PWD/vendor/drupal/coder/coder_sniffer","$PWD/vendor/sirbrillig/phpcs-variable-analysis","$PWD/vendor/slevomat/coding-standard/"
-        ./vendor/bin/phpcs --standard=PSR2 --ignore='*.md' --extensions=php src/
+      - name: Configure PHPCS and Run PHPCS with PSR-2
+        run: |
+          cd php;
+          ./vendor/bin/phpcs --config-set installed_paths "$PWD/vendor/drupal/coder/coder_sniffer","$PWD/vendor/sirbrillig/phpcs-variable-analysis","$PWD/vendor/slevomat/coding-standard/"
+          ./vendor/bin/phpcbf -d memory_limit=512M --standard=PSR2 --encoding=utf-8 --extensions=php --report=full --warning-severity=0 --report-width=auto --ignore='*.md' src/
+          ./vendor/bin/phpcs --standard=PSR2 --ignore='*.md' --extensions=php src/
 
   PHPUnit:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: shivammathur/setup-php@v2  
-      with:
-        php-version: "8.3"
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2  
+        with:
+          php-version: "8.3"
 
-    - name: Installs composer
-      run: |
-        cd php;
-        composer require -n --prefer-dist
+      - name: Installs composer
+        run: |
+          cd php;
+          composer require -n --prefer-dist
 
-    - name: Configure PHPUnit and Run PHPUnit with Fail on Warning and Notice
-      run: |
-        cd php;
-        ./vendor/bin/phpunit --fail-on-warning --fail-on-notice  tests/Unit
+      - name: Configure PHPUnit and Run PHPUnit with Fail on Warning and Notice
+        run: |
+          cd php;
+          ./vendor/bin/phpunit --fail-on-warning --fail-on-notice  tests/Unit
