@@ -12,7 +12,7 @@ use Chuva\Php\WebScrapping\SpreadsheetGenerator;
 class FileManager
 {
     /**
-     * Lê o conteúdo HTML de um arquivo, extrai papers, gera planilha e salva os dados.
+     * Lê o  conteúdo HTML de um arquivo, extrai papers, gera planilha e salva os dados.
      *
      * @param string $filePath O caminho para o arquivo HTML.
      * @param string $outputDirectory O diretório para salvar o arquivo de saída.
