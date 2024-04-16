@@ -2,7 +2,6 @@
 
 namespace WebScrapping;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Chuva\Php\WebScrapping\FileManager;
 
