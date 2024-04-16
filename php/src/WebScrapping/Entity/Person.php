@@ -19,7 +19,7 @@ class Person
     public string $institution;
 
     /**
-     * Builder.
+     * Build.
      */
     public function __construct($name, $institution)
     {
