@@ -12,7 +12,7 @@ namespace Chuva\Php\WebScrapping;
 class PaperExtractor
 {
     /**
-     * Extrai informações de um registro de papel.
+     * Extraindo informações de um registro de papel.
      *
      * @param string $record O registro de papel a ser extraído.
      * @return array As informações extraídas.
