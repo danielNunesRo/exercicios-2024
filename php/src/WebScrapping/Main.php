@@ -41,5 +41,3 @@ class Main
         echo "Os dados foram salvos em: $outputFile";
     }
 }
-
-Main::run();
