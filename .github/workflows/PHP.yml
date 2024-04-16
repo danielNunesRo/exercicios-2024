@@ -37,10 +37,10 @@ jobs:
         cd php;
         composer require -n --prefer-dist
 
-    - name: Configure PHPCS
+    - name: Configure PHPCS and Run PHPCS with PSR-2
       run: |
         cd php;
-        ./vendor/bin/phpcs --config-set installed_paths `$PWD`vendor/drupal/coder/coder_sniffer,vendor/sirbrillig/phpcs-variable-analysis,vendor/slevomat/coding-standard/
+        ./vendor/bin/phpcs --config-set installed_paths "$PWD/vendor/drupal/coder/coder_sniffer","$PWD/vendor/sirbrillig/phpcs-variable-analysis","$PWD/vendor/slevomat/coding-standard/"
         ./vendor/bin/phpcs --standard=PSR2 --ignore='*.md' --extensions=php src/
 
   PHPUnit:
@@ -56,7 +56,7 @@ jobs:
         cd php;
         composer require -n --prefer-dist
 
-    - name: Configure PHPCS
+    - name: Configure PHPUnit and Run PHPUnit with Fail on Warning and Notice
       run: |
         cd php;
         ./vendor/bin/phpunit --fail-on-warning --fail-on-notice  tests/Unit
