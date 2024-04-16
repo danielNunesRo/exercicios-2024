@@ -1,18 +1,24 @@
 <?php
-
-// SpreadsheetGenerator.php
-
 namespace Chuva\Php\WebScrapping;
-
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
+/**
+ * Class SpreadsheetGenerator
+ *
+ * Gera um arquivo de planilha a partir dos dados fornecidos.
+ */
 class SpreadsheetGenerator
 {
+    /**
+     * Gera uma planilha a partir dos dados fornecidos.
+     *
+     * @param array $data Os dados para preencher a planilha.
+     * @return string O caminho do arquivo gerado.
+     */
     public static function generate(array $data): string
     {
-        
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->fromArray(self::getHeaders(), null, 'A1');
@@ -22,25 +28,25 @@ class SpreadsheetGenerator
             $row++;
         }
 
-        
         $outputDir = __DIR__ . '/../../view/';
         $outputFile = $outputDir . 'data.xlsx';
 
-       
         if (!file_exists($outputDir)) {
             mkdir($outputDir, 0777, true);
         }
 
-       
         $writer = new Xlsx($spreadsheet);
-        $sheet->removeRow(2); 
+        $sheet->removeRow(2);
         $writer->save($outputFile);
 
-      
         return $outputFile;
-
     }
 
+    /**
+     * Retorna os cabeçalhos para a planilha.
+     *
+     * @return array Os cabeçalhos da planilha.
+     */
     private static function getHeaders(): array
     {
         return [

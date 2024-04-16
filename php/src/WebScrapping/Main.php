@@ -9,43 +9,37 @@ use Chuva\Php\WebScrapping\PaperExtractor;
 use Chuva\Php\WebScrapping\SpreadsheetGenerator;
 
 /**
- * Runner for the Webscrapping exercice.
+ * Runner for the Webscraping exercise.
  */
-class Main {
+class Main
+{
 
-  /**
-   * Main runner, instantiates a Scrapper and runs.
-   */
-  public static function run(): void {
-    $htmlContent = file_get_contents(__DIR__ . '/../../assets/origin.html');
-    
-    $cleanedHTML = HTMLCleaner::cleanHTML($htmlContent);
+    /**
+     * Main runner, instantiates a Scrapper and runs.
+     */
+    public static function run(): void
+    {
+        $htmlContent = file_get_contents(__DIR__ . '/../../assets/origin.html');
 
+        $cleanedHTML = HTMLCleaner::cleanHTML($htmlContent);
 
-    $records = explode('<a href="https://proceedings.science/proceedings/100227/_papers/', $cleanedHTML);
+        $records = explode('<a href="https://proceedings.science/proceedings/100227/_papers/', $cleanedHTML);
 
-    $papersData = [];
-    foreach ($records as $record) {
-      
-      if (empty(trim($record))) {
-          continue;
-      }
-  
-      
-      $paper = PaperExtractor::extract($record);
-  
-      
-      $papersData[] = $paper;
-  }
+        $papersData = [];
+        foreach ($records as $record) {
+            if (empty(trim($record))) {
+                continue;
+            }
 
-    $outputFile = SpreadsheetGenerator::generate($papersData);
+            $paper = PaperExtractor::extract($record);
 
-    echo "Os dados foram salvos em: $outputFile";
-    
+            $papersData[] = $paper;
+        }
 
+        $outputFile = SpreadsheetGenerator::generate($papersData);
 
-  }
-
+        echo "Os dados foram salvos em: $outputFile";
+    }
 }
 
 Main::run();
