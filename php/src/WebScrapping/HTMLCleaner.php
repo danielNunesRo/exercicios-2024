@@ -4,10 +4,11 @@ namespace Chuva\Php\WebScrapping;
 
 /**
  * Class HTMLCleaner
- * 
+ *
  * Classe responsável por limpar o HTML removendo tags não permitidas.
  */
-class HTMLCleaner {
+class HTMLCleaner
+{
 
     /**
      * Limpa o HTML removendo tags não permitidas.
@@ -15,8 +16,8 @@ class HTMLCleaner {
      * @param string $html O HTML a ser limpo.
      * @return string O HTML limpo.
      */
-    public static function cleanHTML($html) 
-    {   
+    public static function cleanHTML($html)
+    {
         $html = preg_replace_callback(
             '/<(\/?)(\w+)((?:\s+\w+(?:\s*=\s*(?:".*?"|\'.*?\'|[^\'">\s]+))?)+\s*|\s*)\/?>/i',
             function ($matches) {
