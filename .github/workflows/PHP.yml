@@ -41,8 +41,8 @@ jobs:
         run: |
           cd php;
           ./vendor/bin/phpcs --config-set installed_paths "$PWD/vendor/drupal/coder/coder_sniffer","$PWD/vendor/sirbrillig/phpcs-variable-analysis","$PWD/vendor/slevomat/coding-standard/"
-          ./vendor/bin/phpcbf -d memory_limit=512M --standard=PSR2 --encoding=utf-8 --extensions=php --report=full --warning-severity=0 --report-width=auto --ignore='*.md' src/
-          ./vendor/bin/phpcs --standard=PSR2 --ignore='*.md' --extensions=php --warning-severity=0 src/
+          ./vendor/bin/phpcbf -d memory_limit=512M --standard=PSR2 --encoding=utf-8 --extensions=php --report=full --report-width=auto --ignore='*.md' src/
+          ./vendor/bin/phpcs --standard=PSR2 --ignore='*.md' --extensions=php  src/
 
   PHPUnit:
     runs-on: ubuntu-latest

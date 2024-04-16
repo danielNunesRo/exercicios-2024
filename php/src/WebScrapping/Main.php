@@ -1,8 +1,6 @@
 <?php
 
-namespace WebScrapping;
-
-require_once __DIR__ . '/../../vendor/autoload.php';
+namespace Chuva\Php\WebScrapping;
 
 use Chuva\Php\WebScrapping\FileManager;
 
@@ -27,9 +25,3 @@ class Main
         }
     }
 }
-
-// Exemplo de uso:
-$filePath = __DIR__ . '/../../assets/origin.html';
-$outputDirectory = __DIR__ . '/../../output';
-$outputFile = Main::run($filePath, $outputDirectory);
-echo "Os dados foram salvos em: $outputFile";
