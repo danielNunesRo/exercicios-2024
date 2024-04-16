@@ -1,12 +1,10 @@
 <?php
 
-namespace WebScraper;
+namespace WebScrapping;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use Chuva\Php\WebScrapping\HTMLCleaner;
-use Chuva\Php\WebScrapping\PaperExtractor;
-use Chuva\Php\WebScrapping\SpreadsheetGenerator;
+use Chuva\Php\WebScrapping\FileManager;
 
 /**
  * Runner for the Webscraping exercise.
@@ -14,31 +12,24 @@ use Chuva\Php\WebScrapping\SpreadsheetGenerator;
 class Main
 {
     /**
-     * Main runner, instantiates a Scrapper and runs.
+     * Main runner, reads HTML content from a file, extracts papers, generates spreadsheet, and saves data.
+     *
+     * @param string $filePath The path to the HTML file.
+     * @param string $outputDirectory The directory to save the output file.
+     * @return string The path to the generated spreadsheet file.
      */
-    public static function run(): void
+    public static function run(string $filePath, string $outputDirectory): string
     {
         try {
-            $htmlContent = file_get_contents(__DIR__ . '/../../assets/origin.html');
-            $cleanedHTML = HTMLCleaner::cleanHTML($htmlContent);
-
-            $records = explode('<a href="https://proceedings.science/proceedings/100227/_papers/', $cleanedHTML);
-
-            $papersData = [];
-            foreach ($records as $record) {
-                if (empty(trim($record))) {
-                    continue;
-                }
-
-                $paper = PaperExtractor::extract($record);
-                $papersData[] = $paper;
-            }
-
-            $outputFile = SpreadsheetGenerator::generate($papersData);
-
-            echo "Os dados foram salvos em: $outputFile";
+            return FileManager::processHTMLFile($filePath, $outputDirectory);
         } catch (\Throwable $e) {
-            echo "Erro: " . $e->getMessage();
+            return "Erro: " . $e->getMessage();
         }
     }
 }
+
+// Exemplo de uso:
+$filePath = __DIR__ . '/../../assets/origin.html';
+$outputDirectory = __DIR__ . '/../../output';
+$outputFile = Main::run($filePath, $outputDirectory);
+echo "Os dados foram salvos em: $outputFile";
